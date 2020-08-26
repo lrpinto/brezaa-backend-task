@@ -19,10 +19,6 @@ app.use(jwt());
 
 app.use(userRoutes)
 
-app.use("*",(req, res) =>{
-    res.send("<h1>Welcome to Brezaa Backend server! Awesome right</h1>");
-});
-
 // global error handler
 app.use(errorHandler);
 
