@@ -1,0 +1,8 @@
+{
+    "env": {
+        "MONGO_USER": "luisa",
+        "MONGO_PASSWORD": "5gXM29kBtOMUVRFd",
+        "MONGO_DB": "users-app-db",
+        "SECRET": "THIS IS USED TO SIGN AND VERIFY JWT TOKENS, REPLACE IT WITH YOUR OWN SECRET, IT CAN BE ANY STRING"
+    }
+}

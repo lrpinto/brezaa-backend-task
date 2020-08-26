@@ -9,9 +9,9 @@
     "forceConsistentCasingInFileNames": true
   },
   "include" : [
-    "src/**/*.ts"   /* Include every ts file in source folder */
+    "src/**/*.ts"
   ],
   "exclude" : [
-      "node_modules"  /* exclude everything in  node_modules */
+      "node_modules"
   ]
 }
