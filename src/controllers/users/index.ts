@@ -5,6 +5,15 @@ import User from "../../models/user"
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
+const getUsers = async (req: Request, res: Response): Promise<void> => {
+  try {
+    const users: IUser[] = await User.find()
+    res.status(200).json({ users })
+  } catch (error) {
+    throw error
+  }
+}
+
 const loginUser = async (req: Request, res: Response): Promise<void> =>  {
 
     try {
@@ -70,4 +79,42 @@ const addUser = async (req: Request, res: Response): Promise<void> => {
   }
 }
 
-export { addUser, loginUser }
+const updateUser = async (req: Request, res: Response): Promise<void> => {
+  try {
+    const {
+      params: { id },
+      body,
+    } = req
+    const updateUser: IUser | null = await User.findByIdAndUpdate(
+      { _id: id },
+      body
+    )
+    const allUsers: IUser[] = await User.find()
+    res.status(200).json({
+      message: "User updated",
+      user: updateUser,
+      users: allUsers,
+    })
+  } catch (error) {
+    throw error
+  }
+}
+
+
+const deleteUser = async (req: Request, res: Response): Promise<void> => {
+  try {
+    const deletedUser: IUser | null = await User.findByIdAndRemove(
+      req.params.id
+    )
+    const allUsers: IUser[] = await User.find()
+    res.status(200).json({
+      message: "User deleted",
+      user: deletedUser,
+      users: allUsers,
+    })
+  } catch (error) {
+    throw error
+  }
+}
+
+export { getUsers, loginUser, addUser, updateUser, deleteUser }

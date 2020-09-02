@@ -3,16 +3,19 @@ import User from "../models/user"
 const expressJwt = require('express-jwt');
 
 const jwt = () => {
+    debugger
     const secret = process.env.SECRET;
     return expressJwt({ secret, algorithms: ['HS256'], _isRevoked }).unless({
         path: [
             // public routes that don't require authentication
             '/',
+            '/users',
             '/users/signup',
             '/users/login',
             '/users/getAllSellers',
             '/getSellerReviews/',
-            '/getNearestSellers/'
+            '/getNearestSellers/',
+            '/api-docs'
         ]
     });
 }

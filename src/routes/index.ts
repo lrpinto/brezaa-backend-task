@@ -1,6 +1,6 @@
 import { Router } from "express"
 import { getHome } from "../controllers/home"
-import { addUser, loginUser } from "../controllers/users"
+import { addUser, loginUser, getUsers, updateUser, deleteUser } from "../controllers/users"
 import { getSellers, getNearestSellers } from "../controllers/sellers"
 import { addReview, getSellerReviews } from "../controllers/reviews"
 
@@ -21,9 +21,15 @@ router.get("/", getHome)
  * User routes
  */
 
+router.get("/users", getUsers)
+
 router.post("/users/signup", jsonParser, addUser)
 
 router.post("/users/login", jsonParser, loginUser)
+
+router.put("/edit-user/:id", jsonParser, updateUser)
+
+router.delete("/delete-user/:id", deleteUser)
 
 /**
  * Seller routes

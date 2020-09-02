@@ -5,7 +5,9 @@ import userRoutes from "../routes"
 import bodyParser from "body-parser"
 import { jwt } from '../helpers/jwt'
 import { errorHandler } from '../helpers/error-handler'
+import { swaggerDocument } from '../swagger'
 
+const swaggerUi = require ('swagger-ui-express')
 
 const app: Express = express()
 
@@ -14,8 +16,13 @@ const PORT: string | number = process.env.PORT || 4000
 app.use(bodyParser.json({ type: 'application/*+json' }))
 app.use(cors())
 
+// setup api docs
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
+
 // use JWT auth to secure the api
 app.use(jwt());
+
+
 
 app.use(userRoutes)
 
